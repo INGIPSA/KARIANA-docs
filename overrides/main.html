@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+  <!-- Preconnect to Google Fonts for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Meta tags for SEO -->
+  <meta name="author" content="KARIANA Team">
+  {% if config.extra.audience == "enterprise" %}
+  <meta name="robots" content="noindex, nofollow">
+  {% else %}
+  <meta name="robots" content="index, follow">
+  {% endif %}
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ page.title }} - KARIANA">
+  <meta property="og:description" content="{{ config.site_description }}">
+  <meta property="og:image" content="{{ config.site_url }}assets/logo.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ page.title }} - KARIANA">
+  <meta name="twitter:description" content="{{ config.site_description }}">
+
+  <style>
+    /* Smooth theme transitions */
+    :root {
+      --md-transition-duration: 200ms;
+    }
+
+    /* Ensure color scheme transitions smoothly */
+    body,
+    .md-header,
+    .md-sidebar,
+    .md-main,
+    .md-footer {
+      transition: background-color var(--md-transition-duration) ease,
+                  color var(--md-transition-duration) ease,
+                  border-color var(--md-transition-duration) ease;
+    }
+  </style>
+{% endblock %}
+
+{% block announce %}
+  {# Audience values: "internal" | "enterprise" | "public" — set via extra.audience in mkdocs*.yml #}
+  {% if config.extra.audience == "internal" %}
+  <div class="kariana-audience-banner kariana-audience-banner--internal">
+    Internal Documentation — KARIANA Team Only
+  </div>
+  {% elif config.extra.audience == "enterprise" %}
+  <div class="kariana-audience-banner kariana-audience-banner--enterprise">
+    Enterprise Documentation
+  </div>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {{ super() }}
+{% endblock %}
+
+{% block footer %}
+  {{ super() }}
+{% endblock %}

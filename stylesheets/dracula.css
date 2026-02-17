@@ -1,0 +1,284 @@
+/* Dracula Theme for MkDocs Material */
+
+/* Dracula Color Palette */
+:root {
+  --dracula-background: #282a36;
+  --dracula-current-line: #44475a;
+  --dracula-foreground: #f8f8f2;
+  --dracula-comment: #6272a4;
+  --dracula-cyan: #8be9fd;
+  --dracula-green: #50fa7b;
+  --dracula-orange: #ffb86c;
+  --dracula-pink: #ff79c6;
+  --dracula-purple: #bd93f9;
+  --dracula-red: #ff5555;
+  --dracula-yellow: #f1fa8c;
+}
+
+/* Apply Dracula theme */
+[data-md-color-scheme="dracula"] {
+  --md-primary-fg-color: var(--dracula-purple);
+  --md-primary-fg-color--light: #caa8fa;
+  --md-primary-fg-color--dark: #9d7ce0;
+  --md-primary-bg-color: var(--dracula-foreground);
+  --md-primary-bg-color--light: #ffffff;
+
+  --md-accent-fg-color: var(--dracula-pink);
+  --md-accent-fg-color--transparent: rgba(255, 121, 198, 0.1);
+  --md-accent-bg-color: var(--dracula-foreground);
+  --md-accent-bg-color--light: #ffffff;
+
+  --md-default-fg-color: var(--dracula-foreground);
+  --md-default-fg-color--light: rgba(248, 248, 242, 0.7);
+  --md-default-fg-color--lighter: rgba(248, 248, 242, 0.5);
+  --md-default-fg-color--lightest: rgba(248, 248, 242, 0.3);
+  --md-default-bg-color: var(--dracula-background);
+  --md-default-bg-color--light: var(--dracula-current-line);
+  --md-default-bg-color--lighter: #3c3f58;
+  --md-default-bg-color--lightest: #4a4e6a;
+
+  --md-code-fg-color: var(--dracula-foreground);
+  --md-code-bg-color: var(--dracula-current-line);
+
+  --md-code-hl-color: rgba(255, 184, 108, 0.3);
+  --md-code-hl-number-color: var(--dracula-purple);
+  --md-code-hl-special-color: var(--dracula-pink);
+  --md-code-hl-function-color: var(--dracula-green);
+  --md-code-hl-constant-color: var(--dracula-purple);
+  --md-code-hl-keyword-color: var(--dracula-pink);
+  --md-code-hl-string-color: var(--dracula-yellow);
+  --md-code-hl-name-color: var(--dracula-cyan);
+  --md-code-hl-operator-color: var(--dracula-pink);
+  --md-code-hl-punctuation-color: var(--dracula-foreground);
+  --md-code-hl-comment-color: var(--dracula-comment);
+  --md-code-hl-generic-color: var(--dracula-orange);
+  --md-code-hl-variable-color: var(--dracula-foreground);
+
+  --md-typeset-color: var(--dracula-foreground);
+  --md-typeset-a-color: var(--dracula-cyan);
+
+  --md-admonition-fg-color: var(--dracula-foreground);
+  --md-admonition-bg-color: var(--dracula-current-line);
+
+  --md-footer-fg-color: var(--dracula-foreground);
+  --md-footer-fg-color--light: rgba(248, 248, 242, 0.7);
+  --md-footer-fg-color--lighter: rgba(248, 248, 242, 0.5);
+  --md-footer-bg-color: #1e1f29;
+  --md-footer-bg-color--dark: #15161d;
+}
+
+/* Navigation styling */
+[data-md-color-scheme="dracula"] .md-nav__link {
+  color: var(--dracula-foreground);
+}
+
+[data-md-color-scheme="dracula"] .md-nav__link:hover {
+  color: var(--dracula-cyan);
+}
+
+[data-md-color-scheme="dracula"] .md-nav__link--active {
+  color: var(--dracula-pink);
+}
+
+/* Header styling */
+[data-md-color-scheme="dracula"] .md-header {
+  background-color: var(--dracula-background);
+  border-bottom: 1px solid var(--dracula-current-line);
+}
+
+/* Tabs styling */
+[data-md-color-scheme="dracula"] .md-tabs {
+  background-color: var(--dracula-background);
+}
+
+[data-md-color-scheme="dracula"] .md-tabs__link {
+  color: var(--dracula-foreground);
+}
+
+[data-md-color-scheme="dracula"] .md-tabs__link:hover,
+[data-md-color-scheme="dracula"] .md-tabs__link--active {
+  color: var(--dracula-pink);
+}
+
+/* Search styling */
+[data-md-color-scheme="dracula"] .md-search__form {
+  background-color: var(--dracula-current-line);
+}
+
+[data-md-color-scheme="dracula"] .md-search__input {
+  color: var(--dracula-foreground);
+}
+
+/* Table styling */
+[data-md-color-scheme="dracula"] .md-typeset table:not([class]) {
+  border: 1px solid var(--dracula-current-line);
+}
+
+[data-md-color-scheme="dracula"] .md-typeset table:not([class]) th {
+  background-color: var(--dracula-current-line);
+  color: var(--dracula-pink);
+}
+
+[data-md-color-scheme="dracula"] .md-typeset table:not([class]) td {
+  border-color: var(--dracula-current-line);
+}
+
+/* Admonitions with Dracula colors */
+[data-md-color-scheme="dracula"] .md-typeset .admonition.note,
+[data-md-color-scheme="dracula"] .md-typeset details.note {
+  border-color: var(--dracula-purple);
+}
+
+[data-md-color-scheme="dracula"] .md-typeset .note > .admonition-title,
+[data-md-color-scheme="dracula"] .md-typeset .note > summary {
+  background-color: rgba(189, 147, 249, 0.1);
+}
+
+[data-md-color-scheme="dracula"] .md-typeset .admonition.tip,
+[data-md-color-scheme="dracula"] .md-typeset details.tip {
+  border-color: var(--dracula-green);
+}
+
+[data-md-color-scheme="dracula"] .md-typeset .tip > .admonition-title,
+[data-md-color-scheme="dracula"] .md-typeset .tip > summary {
+  background-color: rgba(80, 250, 123, 0.1);
+}
+
+[data-md-color-scheme="dracula"] .md-typeset .admonition.warning,
+[data-md-color-scheme="dracula"] .md-typeset details.warning {
+  border-color: var(--dracula-orange);
+}
+
+[data-md-color-scheme="dracula"] .md-typeset .warning > .admonition-title,
+[data-md-color-scheme="dracula"] .md-typeset .warning > summary {
+  background-color: rgba(255, 184, 108, 0.1);
+}
+
+[data-md-color-scheme="dracula"] .md-typeset .admonition.danger,
+[data-md-color-scheme="dracula"] .md-typeset details.danger {
+  border-color: var(--dracula-red);
+}
+
+[data-md-color-scheme="dracula"] .md-typeset .danger > .admonition-title,
+[data-md-color-scheme="dracula"] .md-typeset details.danger > summary {
+  background-color: rgba(255, 85, 85, 0.1);
+}
+
+[data-md-color-scheme="dracula"] .md-typeset .admonition.info,
+[data-md-color-scheme="dracula"] .md-typeset details.info {
+  border-color: var(--dracula-cyan);
+}
+
+[data-md-color-scheme="dracula"] .md-typeset .info > .admonition-title,
+[data-md-color-scheme="dracula"] .md-typeset details.info > summary {
+  background-color: rgba(139, 233, 253, 0.1);
+}
+
+/* Code blocks */
+[data-md-color-scheme="dracula"] .highlight pre {
+  background-color: var(--dracula-current-line) !important;
+}
+
+[data-md-color-scheme="dracula"] .md-typeset code {
+  background-color: var(--dracula-current-line);
+  color: var(--dracula-pink);
+}
+
+/* Links */
+[data-md-color-scheme="dracula"] .md-typeset a {
+  color: var(--dracula-cyan);
+}
+
+[data-md-color-scheme="dracula"] .md-typeset a:hover {
+  color: var(--dracula-pink);
+}
+
+/* Scrollbar styling */
+[data-md-color-scheme="dracula"] ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+[data-md-color-scheme="dracula"] ::-webkit-scrollbar-track {
+  background: var(--dracula-background);
+}
+
+[data-md-color-scheme="dracula"] ::-webkit-scrollbar-thumb {
+  background: var(--dracula-current-line);
+  border-radius: 4px;
+}
+
+[data-md-color-scheme="dracula"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--dracula-comment);
+}
+
+/* Hero section styling */
+.hero {
+  background: linear-gradient(135deg, var(--dracula-background) 0%, #1a1b26 100%);
+  padding: 3rem 0;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.hero h1 {
+  color: var(--dracula-pink);
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  color: var(--dracula-foreground);
+  font-size: 1.25rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Feature grid */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.feature-card {
+  background: var(--dracula-current-line);
+  border-radius: 8px;
+  padding: 1.5rem;
+  border: 1px solid var(--dracula-comment);
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--dracula-purple);
+}
+
+.feature-card h3 {
+  color: var(--dracula-pink);
+  margin-top: 0;
+}
+
+.feature-card p {
+  color: var(--dracula-foreground);
+  margin-bottom: 0;
+}
+
+/* Button styling */
+.md-button {
+  background-color: var(--dracula-purple) !important;
+  color: var(--dracula-foreground) !important;
+  border: none !important;
+}
+
+.md-button:hover {
+  background-color: var(--dracula-pink) !important;
+}
+
+.md-button--primary {
+  background-color: var(--dracula-pink) !important;
+}
+
+.md-button--primary:hover {
+  background-color: var(--dracula-purple) !important;
+}
