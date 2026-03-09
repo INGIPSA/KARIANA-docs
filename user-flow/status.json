@@ -1,0 +1,258 @@
+{
+  "_instructions": "Update the 'status' field for each item when work is completed. Valid values: done, partial, not-started, external. Add 'updated_by' and 'updated_date' when changing status.",
+  "last_updated": "2026-03-09",
+  "components": {
+    "landing_page": {
+      "label": "kariana.ai Landing Page",
+      "section": "discovery",
+      "status": "external",
+      "description": "Hosted on Vercel/Next.js (kariana-landing repo)",
+      "notes": "Not in this codebase",
+      "updated_by": "",
+      "updated_date": "2026-03-09"
+    },
+    "pricing_table": {
+      "label": "Pricing Table",
+      "section": "discovery",
+      "status": "not-started",
+      "description": "Side-by-side comparison of 6 tiers, Monthly/Yearly toggle, volume discounts",
+      "notes": "",
+      "updated_by": "",
+      "updated_date": "2026-03-09"
+    },
+    "signup": {
+      "label": "Sign Up (Clerk Auth)",
+      "section": "discovery",
+      "status": "partial",
+      "description": "Clerk auth (email / Google / SSO)",
+      "notes": "Clerk URLs whitelisted in plugin. Full flow not implemented. Branch: feat/api-key-and-clerk",
+      "updated_by": "",
+      "updated_date": "2026-03-09"
+    },
+    "plan_selection": {
+      "label": "Plan Selection + Seat Count",
+      "section": "discovery",
+      "status": "not-started",
+      "description": "Monthly/Yearly toggle, volume discounts auto-applied, 6 tiers from $1 to $175/seat",
+      "notes": "",
+      "updated_by": "",
+      "updated_date": "2026-03-09"
+    },
+    "payment": {
+      "label": "Payment (Stripe)",
+      "section": "discovery",
+      "status": "not-started",
+      "description": "Stripe checkout integration",
+      "notes": "No payment code exists yet",
+      "updated_by": "",
+      "updated_date": "2026-03-09"
+    },
+    "confirmation": {
+      "label": "Confirmation Screen + Email",
+      "section": "discovery",
+      "status": "not-started",
+      "description": "API key on screen + email with install instructions + docs link",
+      "notes": "",
+      "updated_by": "",
+      "updated_date": "2026-03-09"
+    },
+    "installer_windows": {
+      "label": "Windows Installer",
+      "section": "installation",
+      "status": "done",
+      "description": "PowerShell one-liner, Inno Setup, auto-detect UE 5.7+",
+      "notes": "Manual browse fallback included",
+      "updated_by": "",
+      "updated_date": "2026-03-09"
+    },
+    "installer_macos": {
+      "label": "macOS Installer",
+      "section": "installation",
+      "status": "done",
+      "description": "curl | bash, pip install kariana-mcp",
+      "notes": "Needs Mac hardware testing",
+      "updated_by": "",
+      "updated_date": "2026-03-09"
+    },
+    "installer_linux": {
+      "label": "Linux Installer",
+      "section": "installation",
+      "status": "done",
+      "description": "Bootstrap script, curl | bash",
+      "notes": "",
+      "updated_by": "",
+      "updated_date": "2026-03-09"
+    },
+    "installer_auto_detect": {
+      "label": "UE Auto-Detection + Install",
+      "section": "installation",
+      "status": "done",
+      "description": "Auto-detects UE 5.7+, manual folder picker fallback, installs plugin + MCP",
+      "notes": "",
+      "updated_by": "",
+      "updated_date": "2026-03-09"
+    },
+    "api_key_entry": {
+      "label": "API Key Entry (in Installer)",
+      "section": "installation",
+      "status": "not-started",
+      "description": "API key input step in installer flow",
+      "notes": "Settings field exists in KarianaAssistantSettings.h but installer doesn't prompt",
+      "updated_by": "",
+      "updated_date": "2026-03-09"
+    },
+    "plugin_config": {
+      "label": "Plugin Installed + Configured",
+      "section": "installation",
+      "status": "done",
+      "description": "MCP servers configured, Claude Desktop / Claude Code set up automatically",
+      "notes": "",
+      "updated_by": "",
+      "updated_date": "2026-03-09"
+    },
+    "admin_dashboard_access": {
+      "label": "Admin Dashboard Access",
+      "section": "enterprise",
+      "status": "not-started",
+      "description": "After payment, admin gets app.kariana.ai dashboard",
+      "notes": "Enterprise fork for team plans (5+ seats)",
+      "updated_by": "",
+      "updated_date": "2026-03-09"
+    },
+    "team_invites": {
+      "label": "Invite Team Members",
+      "section": "enterprise",
+      "status": "not-started",
+      "description": "Email invites or share link, each member gets own API key",
+      "notes": "",
+      "updated_by": "",
+      "updated_date": "2026-03-09"
+    },
+    "chat_panel": {
+      "label": "KARIANA Chat Panel",
+      "section": "onboarding",
+      "status": "done",
+      "description": "Chat panel in Unreal Editor with markdown, attachments, modes",
+      "notes": "",
+      "updated_by": "",
+      "updated_date": "2026-03-09"
+    },
+    "tutorial": {
+      "label": "Optional Tutorial",
+      "section": "onboarding",
+      "status": "not-started",
+      "description": "Interactive walkthrough, skip button always visible, dismissable",
+      "notes": "",
+      "updated_by": "",
+      "updated_date": "2026-03-09"
+    },
+    "onboarding_checklist": {
+      "label": "Onboarding Checklist",
+      "section": "onboarding",
+      "status": "not-started",
+      "description": "Persistent sidebar, can be disabled. Tasks: spawn actor, create material, try modes, blueprints, screenshot",
+      "notes": "Designed but not coded",
+      "updated_by": "",
+      "updated_date": "2026-03-09"
+    },
+    "welcome_screen": {
+      "label": "Welcome Screen",
+      "section": "onboarding",
+      "status": "done",
+      "description": "6 quick-action cards: Spawn cube, Create material, List actors, Screenshot, Blueprint, Lighting",
+      "notes": "SKarianaWelcomeScreen widget",
+      "updated_by": "",
+      "updated_date": "2026-03-09"
+    },
+    "daily_use": {
+      "label": "Daily Use — Chat + Tools",
+      "section": "onboarding",
+      "status": "done",
+      "description": "Free-form chat with AI, 236+ MCP tools, Validate/Teach/Create modes",
+      "notes": "",
+      "updated_by": "",
+      "updated_date": "2026-03-09"
+    },
+    "token_tracking": {
+      "label": "Token Usage Tracking",
+      "section": "tokens",
+      "status": "not-started",
+      "description": "Background per-user tracking. Solo: 500 ops/day, 4M tokens/mo. Team: 300 ops/user/day. Enterprise: 10M tokens/user/mo",
+      "notes": "No implementation exists",
+      "updated_by": "",
+      "updated_date": "2026-03-09"
+    },
+    "token_warnings": {
+      "label": "Token Warnings (90%)",
+      "section": "tokens",
+      "status": "not-started",
+      "description": "User sees warning + admin gets dashboard alert at 90% threshold",
+      "notes": "",
+      "updated_by": "",
+      "updated_date": "2026-03-09"
+    },
+    "token_degradation": {
+      "label": "Haiku Degradation (100%)",
+      "section": "tokens",
+      "status": "not-started",
+      "description": "Degrades to Haiku model at limit. No hard block. User notified + admin sees spike",
+      "notes": "",
+      "updated_by": "",
+      "updated_date": "2026-03-09"
+    },
+    "admin_dashboard_team": {
+      "label": "Enterprise Admin Dashboard",
+      "section": "tokens",
+      "status": "not-started",
+      "description": "Team usage, per-user tokens, seat management, billing, audit logs, NDA toggle, API key rotation",
+      "notes": "Only local Gradio dashboard exists (tool filtering). app.kariana.ai portal not started",
+      "updated_by": "",
+      "updated_date": "2026-03-09"
+    },
+    "upgrade_self_serve": {
+      "label": "Self-Serve Upgrade",
+      "section": "upgrades",
+      "status": "not-started",
+      "description": "Change tier or add seats through app.kariana.ai dashboard",
+      "notes": "No in-editor upgrade prompts exist",
+      "updated_by": "",
+      "updated_date": "2026-03-09"
+    },
+    "open_core_conversion": {
+      "label": "Open Core → Paid Conversion",
+      "section": "upgrades",
+      "status": "not-started",
+      "description": "Upgrade prompt when Open Core user hits limitations (modes, admin panel, cloud LLM, team features)",
+      "notes": "",
+      "updated_by": "",
+      "updated_date": "2026-03-09"
+    },
+    "licensing": {
+      "label": "Licensing System",
+      "section": "infrastructure",
+      "status": "done",
+      "description": "HMAC-SHA256 signed JSON licenses, feature gating, seat tracking, expiry validation",
+      "notes": "Content/Python/licensing/core.py — not yet wired into editor UI",
+      "updated_by": "",
+      "updated_date": "2026-03-09"
+    },
+    "nda_mode": {
+      "label": "NDA Mode",
+      "section": "infrastructure",
+      "status": "partial",
+      "description": "Privacy feature: Local Only + Sanitized Cloud modes",
+      "notes": "Core logic done (alias registry, sanitizer, desanitizer). Not wired into backends/UI. Branch: feat/nda-mode",
+      "updated_by": "",
+      "updated_date": "2026-03-09"
+    },
+    "api_key_management": {
+      "label": "API Key Management",
+      "section": "infrastructure",
+      "status": "partial",
+      "description": "Settings field with env var fallback in KarianaAssistantSettings.h",
+      "notes": "Daemon integration PR pending on feat/api-key-and-clerk",
+      "updated_by": "",
+      "updated_date": "2026-03-09"
+    }
+  }
+}

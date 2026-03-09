@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KARIANA User Flow — Implementation Status</title>
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: #161b22;
+            --bg-header: #0d1117;
+            --border: #30363d;
+            --border-hover: #484f58;
+            --text: #e0e0e0;
+            --text-primary: #f0f6fc;
+            --text-muted: #8b949e;
+            --text-dim: #484f58;
+            --accent: #58a6ff;
+            --done: #3fb950;
+            --done-bg: rgba(56,185,80,0.12);
+            --done-border: #238636;
+            --partial: #d29922;
+            --partial-bg: rgba(210,153,34,0.12);
+            --partial-border: #9e6a03;
+            --not-started: #f85149;
+            --not-started-bg: rgba(248,81,73,0.12);
+            --not-started-border: #da3633;
+            --external: #a371f7;
+            --external-bg: rgba(163,113,247,0.12);
+            --external-border: #8957e5;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--bg-header), var(--bg-card));
+            border-bottom: 1px solid var(--border);
+            padding: 28px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .header h1 { font-size: 26px; font-weight: 700; color: var(--text-primary); }
+        .header h1 span { color: var(--accent); }
+        .header .meta { font-size: 13px; color: var(--text-muted); }
+        .header .meta .date { font-weight: 600; color: var(--accent); }
+
+        /* Stats bar */
+        .stats-bar {
+            display: flex;
+            gap: 24px;
+            padding: 16px 48px;
+            background: var(--bg-header);
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+        .stat-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .stat-count { font-weight: 700; font-size: 16px; }
+        .stat-count.done { color: var(--done); }
+        .stat-count.partial { color: var(--partial); }
+        .stat-count.not-started { color: var(--not-started); }
+        .stat-count.external { color: var(--external); }
+
+        .progress-bar-container {
+            flex: 1;
+            min-width: 200px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .progress-track {
+            flex: 1; height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+        }
+        .progress-fill { height: 100%; transition: width 0.5s ease; }
+        .progress-fill.done { background: var(--done); }
+        .progress-fill.partial { background: var(--partial); }
+        .progress-pct { font-size: 14px; font-weight: 700; color: var(--text-primary); min-width: 42px; }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 40px 48px; }
+
+        /* Section */
+        .section { margin-bottom: 56px; }
+        .section-header {
+            display: flex; align-items: center; gap: 14px;
+            margin-bottom: 28px;
+        }
+        .section-num {
+            width: 38px; height: 38px;
+            border-radius: 50%;
+            background: var(--bg-header);
+            border: 2px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 17px; color: var(--accent);
+            flex-shrink: 0;
+        }
+        .section-title { font-size: 20px; font-weight: 600; color: var(--text-primary); }
+        .section-count { font-size: 12px; color: var(--text-muted); margin-left: auto; }
+
+        /* Flow */
+        .flow { display: flex; flex-direction: column; align-items: center; gap: 0; }
+
+        .arrow-down {
+            width: 2px; height: 32px;
+            background: var(--border);
+            position: relative;
+        }
+        .arrow-down::after {
+            content: '';
+            position: absolute; bottom: -5px; left: -4px;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 6px solid var(--border);
+        }
+
+        /* Node */
+        .node {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px 24px;
+            min-width: 280px;
+            max-width: 380px;
+            width: 100%;
+            position: relative;
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+            cursor: default;
+        }
+        .node:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+        }
+        .node[data-status="done"] { border-color: var(--done-border); }
+        .node[data-status="partial"] { border-color: var(--partial-border); }
+        .node[data-status="not-started"] { border-color: var(--not-started-border); }
+        .node[data-status="external"] { border-color: var(--external-border); border-style: dashed; }
+
+        .node-label { font-weight: 600; font-size: 14px; color: var(--text-primary); margin-bottom: 4px; padding-right: 70px; }
+        .node-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+        .node-notes { font-size: 11px; color: var(--text-dim); margin-top: 6px; font-style: italic; }
+        .node-meta { font-size: 10px; color: var(--text-dim); margin-top: 6px; }
+
+        .badge {
+            position: absolute; top: 10px; right: 12px;
+            font-size: 9px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.5px; padding: 3px 8px; border-radius: 10px;
+        }
+        .badge[data-status="done"] { background: var(--done-border); color: #fff; }
+        .badge[data-status="partial"] { background: var(--partial-border); color: #fff; }
+        .badge[data-status="not-started"] { background: var(--not-started-border); color: #fff; }
+        .badge[data-status="external"] { background: var(--external-border); color: #fff; }
+
+        /* Split layout */
+        .split-row {
+            display: flex; justify-content: center; gap: 24px;
+            width: 100%; flex-wrap: wrap;
+        }
+        .split-col {
+            display: flex; flex-direction: column; align-items: center;
+            gap: 0; flex: 1; max-width: 260px; min-width: 180px;
+        }
+        .split-label {
+            background: var(--bg-header); border: 1px solid var(--border);
+            border-radius: 16px; padding: 4px 14px;
+            font-size: 12px; color: var(--text-muted); font-weight: 500;
+        }
+
+        /* Fork */
+        .fork-container {
+            display: flex; gap: 40px; width: 100%;
+            justify-content: center; margin-top: 20px; flex-wrap: wrap;
+        }
+        .fork-path {
+            display: flex; flex-direction: column; align-items: center;
+            gap: 0; flex: 1; max-width: 420px;
+        }
+        .fork-label {
+            font-size: 14px; font-weight: 600; color: var(--accent);
+            margin-bottom: 14px; text-align: center;
+        }
+
+        /* Token bars */
+        .token-bars { margin-top: 10px; }
+        .token-row { display: flex; align-items: center; gap: 8px; margin: 4px 0; }
+        .token-track { flex: 1; height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
+        .token-fill { height: 100%; border-radius: 3px; }
+        .token-fill.green { background: var(--done); width: 60%; }
+        .token-fill.yellow { background: var(--partial); width: 90%; }
+        .token-fill.red { background: var(--not-started); width: 100%; }
+        .token-label { font-size: 10px; color: var(--text-muted); white-space: nowrap; min-width: 180px; }
+
+        /* Dashboard features */
+        .dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-top: 8px; }
+        .dash-item { font-size: 11px; color: var(--text-muted); }
+        .dash-item::before { content: '\2022 '; color: var(--accent); }
+
+        /* Services */
+        .services-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px; width: 100%; margin-top: 12px;
+        }
+        .service-card {
+            background: var(--bg-card); border: 1px solid var(--external-border);
+            border-radius: 8px; padding: 10px 14px;
+        }
+        .service-name { font-weight: 600; font-size: 12px; color: var(--text-primary); }
+        .service-price { font-size: 11px; color: var(--external); margin-top: 2px; }
+
+        /* Triggers */
+        .trigger-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 14px; width: 100%; max-width: 800px; margin: 0 auto;
+        }
+        .trigger-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 10px; padding: 14px 18px; text-align: center;
+        }
+        .trigger-title { font-weight: 600; font-size: 13px; color: var(--text-primary); margin-bottom: 3px; }
+        .trigger-desc { font-size: 11px; color: var(--text-muted); }
+
+        /* Checklist */
+        .checklist { list-style: none; margin-top: 8px; }
+        .checklist li { font-size: 11px; color: var(--text-muted); padding: 2px 0; }
+        .checklist li::before { content: '\2610  '; color: var(--text-dim); font-family: monospace; }
+
+        /* Summary */
+        .summary {
+            background: linear-gradient(135deg, var(--bg-card), var(--bg-header));
+            border: 1px solid var(--border); border-radius: 14px;
+            padding: 28px 36px; margin-top: 32px;
+        }
+        .summary h3 { font-size: 17px; color: var(--text-primary); margin-bottom: 18px; }
+        .summary-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 12px;
+        }
+        .summary-item { display: flex; align-items: center; gap: 10px; }
+        .summary-icon {
+            width: 30px; height: 30px; border-radius: 7px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px; flex-shrink: 0;
+        }
+        .summary-icon.done { background: var(--done-bg); color: var(--done); }
+        .summary-icon.partial { background: var(--partial-bg); color: var(--partial); }
+        .summary-icon.not-started { background: var(--not-started-bg); color: var(--not-started); }
+        .summary-text { font-size: 13px; color: var(--text); }
+        .summary-text small { display: block; color: var(--text-muted); font-size: 11px; margin-top: 1px; }
+
+        .footer {
+            text-align: center; padding: 36px 0; color: var(--text-dim); font-size: 12px;
+        }
+
+        .loading {
+            text-align: center; padding: 80px; color: var(--text-muted); font-size: 16px;
+        }
+
+        @media (max-width: 900px) {
+            .header, .stats-bar, .container { padding-left: 20px; padding-right: 20px; }
+            .fork-container { flex-direction: column; align-items: center; }
+            .node { min-width: 220px; }
+        }
+
+        @media print {
+            body { background: #fff; color: #000; }
+            .node { border-color: #ccc; background: #f9f9f9; }
+            .node-label, .section-title, .header h1 { color: #000; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div>
+        <h1><span>KARIANA</span> User Flow</h1>
+        <div class="meta">Complete user journey — Discovery to Daily Use (Enterprise focus)</div>
+    </div>
+    <div class="meta">
+        Last updated: <span class="date" id="lastUpdated">—</span>
+    </div>
+</div>
+
+<div class="stats-bar" id="statsBar">
+    <!-- Populated by JS -->
+</div>
+
+<div class="container" id="app">
+    <div class="loading">Loading status data...</div>
+</div>
+
+<script>
+const STATUS_LABELS = {
+    'done': 'Done',
+    'partial': 'Partial',
+    'not-started': 'Not Started',
+    'external': 'External'
+};
+
+const SECTIONS = [
+    { id: 'discovery', num: '1', title: 'Discovery & Signup' },
+    { id: 'installation', num: '2', title: 'Installation & Setup' },
+    { id: 'enterprise', num: '2e', title: 'Enterprise Fork (Team, 5+ seats)', isFork: true },
+    { id: 'onboarding', num: '3', title: 'First Use & Onboarding' },
+    { id: 'tokens', num: '4', title: 'Daily Use & Token Management' },
+    { id: 'upgrades', num: '5', title: 'Upgrade & Expansion Paths' },
+    { id: 'infrastructure', num: '⚙', title: 'Infrastructure & Backend' }
+];
+
+function createNode(comp) {
+    const s = comp.status;
+    let extra = '';
+
+    if (comp.notes) {
+        extra += `<div class="node-notes">${esc(comp.notes)}</div>`;
+    }
+    if (comp.updated_by) {
+        extra += `<div class="node-meta">Updated by ${esc(comp.updated_by)} on ${esc(comp.updated_date)}</div>`;
+    }
+
+    return `<div class="node" data-status="${s}">
+        <span class="badge" data-status="${s}">${STATUS_LABELS[s]}</span>
+        <div class="node-label">${esc(comp.label)}</div>
+        <div class="node-desc">${esc(comp.description)}</div>
+        ${extra}
+    </div>`;
+}
+
+function arrow() {
+    return '<div class="arrow-down"></div>';
+}
+
+function esc(s) {
+    const d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+}
+
+function renderStats(components) {
+    const counts = { done: 0, partial: 0, 'not-started': 0, external: 0 };
+    const items = Object.values(components);
+    items.forEach(c => counts[c.status] = (counts[c.status] || 0) + 1);
+
+    const total = items.length - counts.external;
+    const completed = counts.done + counts.partial * 0.5;
+    const pct = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+    document.getElementById('statsBar').innerHTML = `
+        <div class="stat"><div class="stat-dot" style="background:var(--done)"></div><span class="stat-count done">${counts.done}</span> Done</div>
+        <div class="stat"><div class="stat-dot" style="background:var(--partial)"></div><span class="stat-count partial">${counts.partial}</span> Partial</div>
+        <div class="stat"><div class="stat-dot" style="background:var(--not-started)"></div><span class="stat-count not-started">${counts['not-started']}</span> Not Started</div>
+        <div class="stat"><div class="stat-dot" style="background:var(--external)"></div><span class="stat-count external">${counts.external}</span> External</div>
+        <div class="progress-bar-container">
+            <div class="progress-track">
+                <div class="progress-fill done" style="width:${(counts.done/total*100).toFixed(1)}%"></div>
+                <div class="progress-fill partial" style="width:${(counts.partial/total*100).toFixed(1)}%"></div>
+            </div>
+            <div class="progress-pct">${pct}%</div>
+        </div>
+    `;
+}
+
+function getBySection(components, sectionId) {
+    return Object.entries(components)
+        .filter(([_, c]) => c.section === sectionId)
+        .map(([k, c]) => ({ key: k, ...c }));
+}
+
+function renderFlow(items) {
+    return items.map((c, i) =>
+        (i > 0 ? arrow() : '') + createNode(c)
+    ).join('');
+}
+
+function render(data) {
+    const c = data.components;
+
+    document.getElementById('lastUpdated').textContent = data.last_updated;
+    renderStats(c);
+
+    const discovery = getBySection(c, 'discovery');
+    const installation = getBySection(c, 'installation');
+    const enterprise = getBySection(c, 'enterprise');
+    const onboarding = getBySection(c, 'onboarding');
+    const tokens = getBySection(c, 'tokens');
+    const upgrades = getBySection(c, 'upgrades');
+    const infra = getBySection(c, 'infrastructure');
+
+    // Find specific components for custom rendering
+    const tokenTracking = c.token_tracking;
+    const tokenWarnings = c.token_warnings;
+    const tokenDegradation = c.token_degradation;
+    const adminDash = c.admin_dashboard_team;
+
+    const html = `
+        <!-- SECTION 1: Discovery -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num">1</div>
+                <div class="section-title">Discovery & Signup</div>
+                <div class="section-count">${discovery.filter(x=>x.status==='done').length}/${discovery.length} complete</div>
+            </div>
+            <div class="flow">${renderFlow(discovery)}</div>
+        </div>
+
+        <!-- SECTION 2: Installation -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num">2</div>
+                <div class="section-title">Installation & Setup</div>
+                <div class="section-count">${installation.filter(x=>x.status==='done').length}/${installation.length} complete</div>
+            </div>
+            <div class="flow">
+                <div class="split-row">
+                    ${installation.filter(x => ['installer_windows','installer_macos','installer_linux'].includes(x.key)).map(inst => `
+                        <div class="split-col">
+                            <div class="split-label">${inst.label.replace(' Installer','')}</div>
+                            <div class="arrow-down" style="height:20px"></div>
+                            ${createNode(inst)}
+                        </div>
+                    `).join('')}
+                </div>
+                ${arrow()}
+                ${installation.filter(x => !['installer_windows','installer_macos','installer_linux'].includes(x.key)).map((inst, i) =>
+                    (i > 0 ? arrow() : '') + createNode(inst)
+                ).join('')}
+            </div>
+
+            <!-- Enterprise fork -->
+            <div class="fork-container">
+                <div class="fork-path">
+                    <div class="fork-label">Enterprise Fork (Team, 5+ seats)</div>
+                    <div class="flow">${renderFlow(enterprise)}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: Onboarding -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num">3</div>
+                <div class="section-title">First Use & Onboarding</div>
+                <div class="section-count">${onboarding.filter(x=>x.status==='done').length}/${onboarding.length} complete</div>
+            </div>
+            <div class="flow">
+                ${onboarding.map((comp, i) => {
+                    let node = (i > 0 ? arrow() : '') + createNode(comp);
+                    if (comp.key === 'onboarding_checklist') {
+                        // Add checklist items after the node
+                        node = (i > 0 ? arrow() : '') + `
+                            <div class="node" data-status="${comp.status}">
+                                <span class="badge" data-status="${comp.status}">${STATUS_LABELS[comp.status]}</span>
+                                <div class="node-label">${esc(comp.label)}</div>
+                                <div class="node-desc">${esc(comp.description)}</div>
+                                <ul class="checklist">
+                                    <li>Spawn an actor</li>
+                                    <li>Create a material</li>
+                                    <li>Try a mode (Validate/Teach/Create)</li>
+                                    <li>Use blueprint tools</li>
+                                    <li>Take a screenshot</li>
+                                </ul>
+                                ${comp.notes ? `<div class="node-notes">${esc(comp.notes)}</div>` : ''}
+                            </div>`;
+                    }
+                    return node;
+                }).join('')}
+            </div>
+        </div>
+
+        <!-- SECTION 4: Tokens -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num">4</div>
+                <div class="section-title">Daily Use & Token Management</div>
+                <div class="section-count">${tokens.filter(x=>x.status==='done').length}/${tokens.length} complete</div>
+            </div>
+            <div class="flow">
+                <div class="node" data-status="${tokenTracking.status}" style="max-width:520px">
+                    <span class="badge" data-status="${tokenTracking.status}">${STATUS_LABELS[tokenTracking.status]}</span>
+                    <div class="node-label">${esc(tokenTracking.label)}</div>
+                    <div class="node-desc">${esc(tokenTracking.description)}</div>
+                    <div class="token-bars">
+                        <div class="token-row"><div class="token-track"><div class="token-fill green"></div></div><div class="token-label">Normal (0-89%)</div></div>
+                        <div class="token-row"><div class="token-track"><div class="token-fill yellow"></div></div><div class="token-label">Warning (90%) — user + admin notified</div></div>
+                        <div class="token-row"><div class="token-track"><div class="token-fill red"></div></div><div class="token-label">Degraded (100%) — Haiku, no block</div></div>
+                    </div>
+                </div>
+                ${arrow()}
+                <div class="node" data-status="${adminDash.status}" style="max-width:520px">
+                    <span class="badge" data-status="${adminDash.status}">${STATUS_LABELS[adminDash.status]}</span>
+                    <div class="node-label">${esc(adminDash.label)}</div>
+                    <div class="node-desc">${esc(adminDash.description)}</div>
+                    <div class="dash-grid">
+                        <div class="dash-item">Team usage overview</div>
+                        <div class="dash-item">Per-user token stats</div>
+                        <div class="dash-item">Seat management</div>
+                        <div class="dash-item">Billing & invoices</div>
+                        <div class="dash-item">Audit logs</div>
+                        <div class="dash-item">NDA mode toggle</div>
+                        <div class="dash-item">API key rotation</div>
+                    </div>
+                    ${adminDash.notes ? `<div class="node-notes">${esc(adminDash.notes)}</div>` : ''}
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: Upgrades -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num">5</div>
+                <div class="section-title">Upgrade & Expansion Paths</div>
+            </div>
+            <div style="text-align:center;margin-bottom:20px;color:var(--text-muted);font-size:14px;">Upgrade Triggers</div>
+            <div class="trigger-grid">
+                <div class="trigger-card"><div class="trigger-title">Hit Token Limits</div><div class="trigger-desc">Frequent degradation to Haiku</div></div>
+                <div class="trigger-card"><div class="trigger-title">Need More Seats</div><div class="trigger-desc">Team growing beyond current plan</div></div>
+                <div class="trigger-card"><div class="trigger-title">Need On-Prem / NDA</div><div class="trigger-desc">Security or compliance requirements</div></div>
+            </div>
+            ${arrow()}
+            <div class="fork-container">
+                <div class="fork-path">
+                    <div class="fork-label">Self-Serve (app.kariana.ai)</div>
+                    ${upgrades.filter(x=>x.key==='upgrade_self_serve').map(x=>createNode(x)).join('')}
+                </div>
+                <div class="fork-path">
+                    <div class="fork-label">Professional Services</div>
+                    <div class="services-grid">
+                        <div class="service-card"><div class="service-name">On-Premise Install</div><div class="service-price">$10,000 + travel</div></div>
+                        <div class="service-card"><div class="service-name">Pipeline Audit</div><div class="service-price">$8,000 + travel</div></div>
+                        <div class="service-card"><div class="service-name">Half-Day Workshop</div><div class="service-price">$3,500 + travel</div></div>
+                        <div class="service-card"><div class="service-name">Full-Day Workshop</div><div class="service-price">$6,000 + travel</div></div>
+                        <div class="service-card"><div class="service-name">Audit + Implementation</div><div class="service-price">$12K-$15K + travel</div></div>
+                        <div class="service-card"><div class="service-name">Custom Hardware</div><div class="service-price">$5.6K-$36K</div></div>
+                        <div class="service-card"><div class="service-name">Consulting</div><div class="service-price">$260/hour</div></div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top:40px">
+                <div class="flow">
+                    <div style="text-align:center;margin-bottom:14px;color:var(--text-muted);font-size:14px;">Open Core &rarr; Paid Conversion</div>
+                    ${upgrades.filter(x=>x.key==='open_core_conversion').map(x=>createNode(x)).join('')}
+                </div>
+            </div>
+        </div>
+
+        <!-- Infrastructure -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num">&cir;</div>
+                <div class="section-title">Infrastructure & Backend</div>
+                <div class="section-count">${infra.filter(x=>x.status==='done').length}/${infra.length} complete</div>
+            </div>
+            <div class="flow">${renderFlow(infra)}</div>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary">
+            <h3>Implementation Status Summary</h3>
+            <div class="summary-grid" id="summaryGrid"></div>
+        </div>
+
+        <div class="footer">KARIANA User Flow &bull; Internal Document &bull; Data-driven from status.json</div>
+    `;
+
+    document.getElementById('app').innerHTML = html;
+
+    // Build summary
+    const summaryEl = document.getElementById('summaryGrid');
+    const allItems = Object.values(c);
+    const groups = [
+        { status: 'done', icon: '\u2713', items: allItems.filter(x => x.status === 'done') },
+        { status: 'partial', icon: '\u25CF', items: allItems.filter(x => x.status === 'partial') },
+        { status: 'not-started', icon: '\u2717', items: allItems.filter(x => x.status === 'not-started') }
+    ];
+
+    summaryEl.innerHTML = groups.flatMap(g =>
+        g.items.map(item => `
+            <div class="summary-item">
+                <div class="summary-icon ${g.status}">${g.icon}</div>
+                <div class="summary-text">${esc(item.label)}<small>${esc(item.description.substring(0, 80))}${item.description.length > 80 ? '...' : ''}</small></div>
+            </div>
+        `)
+    ).join('');
+}
+
+// Load data
+fetch('status.json')
+    .then(r => {
+        if (!r.ok) throw new Error('Failed to load status.json');
+        return r.json();
+    })
+    .then(render)
+    .catch(err => {
+        document.getElementById('app').innerHTML = `
+            <div class="loading" style="color:var(--not-started)">
+                Error loading status.json: ${err.message}<br>
+                <small style="color:var(--text-muted)">Make sure status.json is in the same directory.</small>
+            </div>`;
+    });
+</script>
+
+</body>
+</html>
