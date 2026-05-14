@@ -1,351 +1,264 @@
 /* ==========================================================================
-   KARIANA Documentation Theme - Mintlify-inspired Design
-   Colors matched to kariana.ai brand identity
+   KARIANA Documentation Theme
+   Matched to kariana-design-system.html + kariana-landing-dark.html
+   Rules: NO shadows, NO gradients, Inter Tight, brand colors only
    ========================================================================== */
 
 /* ==========================================================================
-   CSS Custom Properties - KARIANA Brand Colors
+   CSS Custom Properties — from kariana-design-system.html
    ========================================================================== */
 :root {
-  /* Brand Colors from kariana.ai */
-  --kariana-primary: #ff79c6;
-  --kariana-primary-light: #ff9ed8;
-  --kariana-primary-dark: #e056a0;
-  --kariana-primary-subtle: rgba(255, 121, 198, 0.1);
+  /* Brand */
+  --kariana-primary: #FF7EDC;
+  --kariana-primary-light: #FF9EE5;
+  --kariana-primary-dark: #A12D88;
+  --kariana-secondary: #69C9EE;
+  --kariana-tertiary: #B66FEA;
 
-  /* Secondary accent (blue-purple from kariana.ai) */
-  --kariana-secondary: #575ECF;
-  --kariana-secondary-light: #6E75D9;
+  /* Dark theme tokens (d- prefix from design system) */
+  --d-bg: #111111;
+  --d-surface: #1A1A1A;
+  --d-card: #2A2A2A;
+  --d-card-el: #242424;
+  --d-text: #F0EDEC;
+  --d-text-muted: #9E949A;
+  --d-text-light: rgba(255,255,255,0.65);
+  --d-border: rgba(255,255,255,0.12);
+  --d-nav-glass: rgba(18,18,18,0.92);
 
-  /* Brand Neutrals */
-  --kariana-dark: #1b1b1b;
-  --kariana-dark-lighter: #252525;
-  --kariana-dark-surface: #2a2a2a;
-  --kariana-text-warm: #c5c1b9;
-  --kariana-text-warm-light: #dcdad5;
-  --kariana-text-warm-dark: #a8a49c;
+  /* Light theme tokens */
+  --l-surface: #F3F0EF;
+  --l-surface-alt: #EDEAE9;
+  --l-white: #FFFFFF;
+  --l-text: #1A1A1A;
+  --l-text-muted: #53424C;
+  --l-border: rgba(26,26,26,0.1);
+  --l-nav-glass: rgba(243,240,239,0.92);
 
-  /* Light Theme Warm Neutrals */
-  --kariana-cream: #faf9f7;
-  --kariana-cream-dark: #f5f3ef;
-  --kariana-cream-darker: #ebe8e3;
-  --kariana-warm-gray: #8a857d;
-  --kariana-warm-dark: #3d3a36;
+  /* Functional */
+  --success: #4ade80;
+  --warning: #fbbf24;
+  --error: #ef4444;
 
-  /* Slightly desaturated pink for light mode links (reduces eye fatigue) */
-  --kariana-primary-light-mode: #f472b6;
-
-  /* Accent Colors */
-  --kariana-cyan: #8be9fd;
-  --kariana-success: #50fa7b;
-  --kariana-warning: #ffb86c;
-  --kariana-error: #ff5555;
-  --kariana-purple: #bd93f9;
-
-  /* Spacing */
-  --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-
-  /* Border Radius */
   --radius-sm: 0.375rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
   --radius-xl: 1rem;
-
-  /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-
-  /* Transitions */
-  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Selection — purple, matching design system */
+::selection { background: var(--kariana-tertiary); color: #fff; }
+
 /* ==========================================================================
-   LIGHT THEME - Warm cream tones matching kariana.ai aesthetic
+   DARK THEME (default — docs are dark-first like the landing)
    ========================================================================== */
-[data-md-color-scheme="kariana-light"] {
-  /* Primary */
+[data-md-color-scheme="kariana-dark"] {
   --md-primary-fg-color: var(--kariana-primary);
   --md-primary-fg-color--light: var(--kariana-primary-light);
   --md-primary-fg-color--dark: var(--kariana-primary-dark);
-  --md-primary-bg-color: var(--kariana-cream);
-  --md-primary-bg-color--light: var(--kariana-cream-dark);
+  --md-primary-bg-color: var(--d-text);
+  --md-primary-bg-color--light: var(--d-text);
 
-  /* Accent */
   --md-accent-fg-color: var(--kariana-primary);
-  --md-accent-fg-color--transparent: var(--kariana-primary-subtle);
-  --md-accent-bg-color: var(--kariana-warm-dark);
+  --md-accent-fg-color--transparent: rgba(255,126,220,0.08);
+  --md-accent-bg-color: var(--d-text);
 
-  /* Default colors - Warm light theme */
-  --md-default-fg-color: var(--kariana-warm-dark);
-  --md-default-fg-color--light: #5c5851;
-  --md-default-fg-color--lighter: var(--kariana-warm-gray);
-  --md-default-fg-color--lightest: #a8a49c;
-  --md-default-bg-color: var(--kariana-cream);
-  --md-default-bg-color--light: var(--kariana-cream-dark);
-  --md-default-bg-color--lighter: var(--kariana-cream-darker);
-  --md-default-bg-color--lightest: #e0ddd6;
+  --md-default-fg-color: var(--d-text);
+  --md-default-fg-color--light: var(--d-text-muted);
+  --md-default-fg-color--lighter: var(--d-text-light);
+  --md-default-fg-color--lightest: rgba(255,255,255,0.3);
+  --md-default-bg-color: var(--d-bg);
+  --md-default-bg-color--light: var(--d-surface);
+  --md-default-bg-color--lighter: var(--d-card);
+  --md-default-bg-color--lightest: #333333;
 
-  /* Code */
-  --md-code-fg-color: var(--kariana-warm-dark);
-  --md-code-bg-color: var(--kariana-cream-darker);
-  --md-code-hl-color: var(--kariana-primary-subtle);
+  --md-code-fg-color: var(--d-text);
+  --md-code-bg-color: var(--d-surface);
+  --md-code-hl-color: rgba(255,126,220,0.12);
+  --md-code-hl-number-color: var(--kariana-tertiary);
+  --md-code-hl-special-color: var(--kariana-primary);
+  --md-code-hl-function-color: var(--kariana-secondary);
+  --md-code-hl-constant-color: var(--kariana-tertiary);
+  --md-code-hl-keyword-color: var(--kariana-primary);
+  --md-code-hl-string-color: var(--success);
+  --md-code-hl-name-color: var(--kariana-secondary);
+  --md-code-hl-operator-color: var(--kariana-primary-light);
+  --md-code-hl-punctuation-color: var(--d-text-muted);
+  --md-code-hl-comment-color: rgba(255,255,255,0.35);
+  --md-code-hl-generic-color: #fcd34d;
+  --md-code-hl-variable-color: var(--d-text);
+
+  --md-typeset-color: var(--d-text);
+  --md-typeset-a-color: var(--kariana-primary);
+
+  --md-admonition-fg-color: var(--d-text);
+  --md-admonition-bg-color: var(--d-surface);
+
+  --md-footer-fg-color: var(--d-text);
+  --md-footer-fg-color--light: var(--d-text-muted);
+  --md-footer-fg-color--lighter: rgba(255,255,255,0.3);
+  --md-footer-bg-color: #0A0A0A;
+  --md-footer-bg-color--dark: #050505;
+
+  /* Shared aliases */
+  --surface-color: var(--d-card);
+  --surface-border: var(--d-border);
+  --text-primary: var(--d-text);
+  --text-secondary: var(--d-text-muted);
+  --text-muted: rgba(255,255,255,0.35);
+  --nav-glass: var(--d-nav-glass);
+}
+
+/* ==========================================================================
+   LIGHT THEME
+   ========================================================================== */
+[data-md-color-scheme="kariana-light"] {
+  --md-primary-fg-color: var(--kariana-primary);
+  --md-primary-fg-color--light: var(--kariana-primary-light);
+  --md-primary-fg-color--dark: var(--kariana-primary-dark);
+  --md-primary-bg-color: var(--l-surface);
+  --md-primary-bg-color--light: var(--l-surface-alt);
+
+  --md-accent-fg-color: var(--kariana-primary);
+  --md-accent-fg-color--transparent: rgba(255,126,220,0.08);
+  --md-accent-bg-color: var(--l-text);
+
+  --md-default-fg-color: var(--l-text);
+  --md-default-fg-color--light: var(--l-text-muted);
+  --md-default-fg-color--lighter: #6b5f66;
+  --md-default-fg-color--lightest: #9E949A;
+  --md-default-bg-color: var(--l-surface);
+  --md-default-bg-color--light: var(--l-surface-alt);
+  --md-default-bg-color--lighter: #E0DDD6;
+  --md-default-bg-color--lightest: #d8d4ce;
+
+  --md-code-fg-color: var(--l-text);
+  --md-code-bg-color: var(--l-surface-alt);
+  --md-code-hl-color: rgba(255,126,220,0.08);
   --md-code-hl-number-color: #be185d;
-  --md-code-hl-special-color: var(--kariana-purple);
+  --md-code-hl-special-color: var(--kariana-tertiary);
   --md-code-hl-function-color: #0891b2;
   --md-code-hl-constant-color: #be185d;
   --md-code-hl-keyword-color: var(--kariana-primary-dark);
   --md-code-hl-string-color: #059669;
   --md-code-hl-name-color: #2563eb;
   --md-code-hl-operator-color: #dc2626;
-  --md-code-hl-punctuation-color: #5c5851;
-  --md-code-hl-comment-color: var(--kariana-warm-gray);
+  --md-code-hl-punctuation-color: var(--l-text-muted);
+  --md-code-hl-comment-color: #9E949A;
   --md-code-hl-generic-color: #d97706;
-  --md-code-hl-variable-color: var(--kariana-warm-dark);
+  --md-code-hl-variable-color: var(--l-text);
 
-  /* Typography */
-  --md-typeset-color: var(--kariana-warm-dark);
-  --md-typeset-a-color: var(--kariana-primary-light-mode);
+  --md-typeset-color: var(--l-text);
+  --md-typeset-a-color: #d65dac;
 
-  /* Admonitions */
-  --md-admonition-fg-color: var(--kariana-warm-dark);
-  --md-admonition-bg-color: var(--kariana-cream-dark);
+  --md-admonition-fg-color: var(--l-text);
+  --md-admonition-bg-color: var(--l-surface-alt);
 
-  /* Footer - Dark to match kariana.ai */
-  --md-footer-fg-color: var(--kariana-text-warm);
-  --md-footer-fg-color--light: var(--kariana-text-warm-dark);
-  --md-footer-fg-color--lighter: #8a857d;
-  --md-footer-bg-color: var(--kariana-dark);
-  --md-footer-bg-color--dark: #141414;
+  --md-footer-fg-color: var(--d-text);
+  --md-footer-fg-color--light: var(--d-text-muted);
+  --md-footer-fg-color--lighter: rgba(255,255,255,0.3);
+  --md-footer-bg-color: var(--d-bg);
+  --md-footer-bg-color--dark: #0A0A0A;
 
-  /* Custom */
-  --surface-color: #ffffff;
-  --surface-border: #e0ddd6;
-  --text-primary: var(--kariana-warm-dark);
-  --text-secondary: #5c5851;
-  --text-muted: var(--kariana-warm-gray);
+  /* Shared aliases */
+  --surface-color: var(--l-white);
+  --surface-border: var(--l-border);
+  --text-primary: var(--l-text);
+  --text-secondary: var(--l-text-muted);
+  --text-muted: #9E949A;
+  --nav-glass: var(--l-nav-glass);
 }
 
 /* ==========================================================================
-   DARK THEME - Original kariana.ai colors
+   BASE
    ========================================================================== */
-[data-md-color-scheme="kariana-dark"] {
-  /* Primary */
-  --md-primary-fg-color: var(--kariana-primary-light);
-  --md-primary-fg-color--light: var(--kariana-primary);
-  --md-primary-fg-color--dark: var(--kariana-primary-dark);
-  --md-primary-bg-color: var(--kariana-text-warm);
-  --md-primary-bg-color--light: var(--kariana-text-warm-light);
-
-  /* Accent */
-  --md-accent-fg-color: var(--kariana-primary-light);
-  --md-accent-fg-color--transparent: rgba(255, 121, 198, 0.12);
-  --md-accent-bg-color: var(--kariana-text-warm);
-
-  /* Default colors - kariana.ai dark theme */
-  --md-default-fg-color: var(--kariana-text-warm-light);
-  --md-default-fg-color--light: var(--kariana-text-warm);
-  --md-default-fg-color--lighter: var(--kariana-text-warm-dark);
-  --md-default-fg-color--lightest: #8a857d;
-  --md-default-bg-color: var(--kariana-dark);
-  --md-default-bg-color--light: var(--kariana-dark-lighter);
-  --md-default-bg-color--lighter: var(--kariana-dark-surface);
-  --md-default-bg-color--lightest: #333333;
-
-  /* Code */
-  --md-code-fg-color: var(--kariana-text-warm-light);
-  --md-code-bg-color: var(--kariana-dark-lighter);
-  --md-code-hl-color: rgba(255, 121, 198, 0.15);
-  --md-code-hl-number-color: var(--kariana-purple);
-  --md-code-hl-special-color: var(--kariana-primary);
-  --md-code-hl-function-color: var(--kariana-cyan);
-  --md-code-hl-constant-color: var(--kariana-purple);
-  --md-code-hl-keyword-color: var(--kariana-primary);
-  --md-code-hl-string-color: var(--kariana-success);
-  --md-code-hl-name-color: var(--kariana-cyan);
-  --md-code-hl-operator-color: var(--kariana-primary-light);
-  --md-code-hl-punctuation-color: var(--kariana-text-warm);
-  --md-code-hl-comment-color: #8a857d;
-  --md-code-hl-generic-color: #fcd34d;
-  --md-code-hl-variable-color: var(--kariana-text-warm-light);
-
-  /* Typography */
-  --md-typeset-color: var(--kariana-text-warm-light);
-  --md-typeset-a-color: var(--kariana-primary-light);
-
-  /* Admonitions */
-  --md-admonition-fg-color: var(--kariana-text-warm-light);
-  --md-admonition-bg-color: var(--kariana-dark-lighter);
-
-  /* Footer */
-  --md-footer-fg-color: var(--kariana-text-warm);
-  --md-footer-fg-color--light: var(--kariana-text-warm-dark);
-  --md-footer-fg-color--lighter: #8a857d;
-  --md-footer-bg-color: #141414;
-  --md-footer-bg-color--dark: #0d0d0d;
-
-  /* Custom */
-  --surface-color: var(--kariana-dark-lighter);
-  --surface-border: var(--kariana-dark-surface);
-  --text-primary: var(--kariana-text-warm-light);
-  --text-secondary: var(--kariana-text-warm);
-  --text-muted: var(--kariana-text-warm-dark);
-}
+html { scroll-behavior: smooth; }
+body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
 /* ==========================================================================
-   BASE STYLES
-   ========================================================================== */
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* ==========================================================================
-   HEADER
+   HEADER — Glass nav from design system
    ========================================================================== */
 .md-header {
-  background-color: var(--md-default-bg-color);
+  background: var(--nav-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--surface-border);
   box-shadow: none;
-  transition: background-color var(--transition-base),
-              border-color var(--transition-base);
+  height: 3.5rem;
 }
 
-.md-header[data-md-state="shadow"] {
-  box-shadow: var(--shadow-sm);
-}
+.md-header[data-md-state="shadow"] { box-shadow: none; }
 
+/* Hide duplicate site name — logo SVG already shows "KARIANA" */
 .md-header__title {
-  font-weight: 500;
-  font-size: 0.95rem;
-  letter-spacing: -0.01em;
+  display: none;
+}
+
+/* Hide permalink # anchors on headings */
+.md-typeset .headerlink {
+  display: none;
 }
 
 .md-header__button {
   color: var(--text-secondary);
-  transition: color var(--transition-fast);
 }
 
 .md-header__button:hover {
-  color: var(--md-primary-fg-color);
-}
-
-/* Light mode header - darker text for better visibility */
-[data-md-color-scheme="kariana-light"] .md-header {
-  background-color: #ffffff;
-}
-
-[data-md-color-scheme="kariana-light"] .md-header__title {
-  color: var(--kariana-warm-dark);
-}
-
-[data-md-color-scheme="kariana-light"] .md-header__button {
-  color: var(--kariana-warm-dark);
-}
-
-[data-md-color-scheme="kariana-light"] .md-header__button:hover {
-  color: var(--kariana-primary);
-}
-
-[data-md-color-scheme="kariana-light"] .md-source {
-  color: var(--kariana-warm-dark);
-}
-
-[data-md-color-scheme="kariana-light"] .md-source__icon {
-  color: var(--kariana-warm-dark);
-}
-
-[data-md-color-scheme="kariana-light"] .md-source__repository {
-  color: var(--kariana-warm-dark);
-}
-
-[data-md-color-scheme="kariana-light"] .md-header__topic {
-  color: var(--kariana-warm-dark);
-}
-
-[data-md-color-scheme="kariana-light"] .md-ellipsis {
-  color: var(--kariana-warm-dark);
-}
-
-[data-md-color-scheme="kariana-light"] .md-header .md-icon {
-  color: var(--kariana-warm-dark);
-}
-
-[data-md-color-scheme="kariana-light"] .md-header__button[for="__search"] {
-  color: var(--kariana-warm-dark);
-}
-
-[data-md-color-scheme="kariana-light"] .md-search__icon {
-  color: var(--kariana-warm-dark);
+  color: var(--text-primary);
 }
 
 /* Logo */
 .md-header__button.md-logo img,
 .md-header__button.md-logo svg {
-  height: 1.5rem;
+  height: 1.25rem;
   width: auto;
+}
+
+/* Light header overrides */
+[data-md-color-scheme="kariana-light"] .md-header {
+  background: var(--l-nav-glass);
+}
+
+[data-md-color-scheme="kariana-light"] .md-header__title,
+[data-md-color-scheme="kariana-light"] .md-header__button,
+[data-md-color-scheme="kariana-light"] .md-source,
+[data-md-color-scheme="kariana-light"] .md-source__icon,
+[data-md-color-scheme="kariana-light"] .md-source__repository,
+[data-md-color-scheme="kariana-light"] .md-header__topic,
+[data-md-color-scheme="kariana-light"] .md-header .md-icon,
+[data-md-color-scheme="kariana-light"] .md-ellipsis {
+  color: var(--l-text);
 }
 
 /* ==========================================================================
    SEARCH
    ========================================================================== */
 .md-search__form {
-  background-color: var(--surface-color);
+  background: var(--surface-color);
   border: 1px solid var(--surface-border);
-  border-radius: var(--radius-lg);
-  transition: border-color var(--transition-fast),
-              box-shadow var(--transition-fast);
+  border-radius: var(--radius-md);
 }
 
-.md-search__form:hover {
-  border-color: var(--md-primary-fg-color);
-}
-
+.md-search__form:hover,
 .md-search__form:focus-within {
-  border-color: var(--md-primary-fg-color);
-  box-shadow: 0 0 0 3px var(--kariana-primary-subtle);
+  border-color: var(--kariana-primary);
 }
 
 .md-search__input {
-  font-size: 0.7rem;
+  font-size: 0.8125rem;
   color: var(--text-primary);
 }
 
 .md-search__input::placeholder {
-  color: var(--text-muted);
+  color: var(--text-secondary);
+  opacity: 0.5;
 }
-
-/* Light mode search - better visibility */
-[data-md-color-scheme="kariana-light"] .md-search__form {
-  background-color: var(--kariana-cream-dark);
-  border-color: var(--kariana-cream-darker);
-}
-
-[data-md-color-scheme="kariana-light"] .md-search__input {
-  color: var(--kariana-warm-dark);
-}
-
-[data-md-color-scheme="kariana-light"] .md-search__input::placeholder {
-  color: #6b6560;
-}
-
 
 /* ==========================================================================
-   NAVIGATION - SIDEBAR
+   SIDEBAR — Clean, matching nav link style from landing
    ========================================================================== */
 .md-sidebar {
-  background-color: var(--md-default-bg-color);
+  background: var(--md-default-bg-color);
 }
 
 .md-sidebar--primary {
@@ -356,67 +269,81 @@ body {
   border-left: 1px solid var(--surface-border);
 }
 
-/* Navigation links */
+/* Nav links — 0.875rem / 500 / text-muted, like landing .nav__link */
 .md-nav__link {
-  font-size: 0.7rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
   color: var(--text-secondary);
-  border-radius: var(--radius-md);
   padding: 0.5rem 0.75rem;
-  margin: 0.125rem 0;
-  transition: color var(--transition-fast),
-              background-color var(--transition-fast);
+  margin: 2px 0;
+  border-radius: 0;
+  transition: color 0.15s;
 }
 
 .md-nav__link:hover {
   color: var(--text-primary);
-  background-color: var(--md-default-bg-color--lighter);
+  background: transparent;
 }
 
+/* Active — left accent bar, pink text, no bg fill */
 .md-nav__link--active,
-.md-nav__item .md-nav__link--active {
-  color: var(--md-primary-fg-color);
-  font-weight: 500;
-  background-color: var(--kariana-primary-subtle);
+.md-nav__item .md-nav__link--active,
+.md-nav__item .md-nav__link--active:focus,
+.md-nav__item .md-nav__link--active:hover,
+.md-nav--primary .md-nav__link--active,
+[data-md-color-scheme="kariana-dark"] .md-nav__link--active {
+  color: var(--kariana-primary) !important;
+  font-weight: 600;
+  background: transparent !important;
+  border-left: 2px solid var(--kariana-primary);
+  padding-left: calc(0.75rem - 2px);
 }
 
-/* Section labels */
+/* Section labels — pill from design system */
 .md-nav__item--nested > .md-nav__link {
-  font-weight: 600;
-  font-size: 0.75rem;
+  font-weight: 500;
+  font-size: 0.6875rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--text-muted);
-  margin-top: var(--space-lg);
+  color: var(--d-text-muted);
+  margin-top: 1.5rem;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--surface-border);
+  border-radius: 4px;
+  width: fit-content;
 }
 
 .md-nav__item--nested > .md-nav__link:hover {
   color: var(--text-secondary);
-  background-color: transparent;
+  background: transparent;
 }
 
-/* Nested navigation */
+/* Secondary nav (TOC) — pill label */
 .md-nav--secondary .md-nav__title {
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.6875rem;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-muted);
-  padding: var(--space-md);
+  letter-spacing: 0.08em;
+  color: var(--d-text-muted);
+  padding: 0.3rem 0.6rem;
+  margin: 0.75rem;
   box-shadow: none;
-  background-color: transparent;
+  background: transparent;
+  border: 1px solid var(--surface-border);
+  border-radius: 4px;
+  width: fit-content;
 }
 
-/* Table of contents */
 .md-nav--secondary .md-nav__link {
-  font-size: 0.65rem;
-  padding: 0.375rem 0.75rem;
+  font-size: 0.75rem;
+  padding: 0.4rem 0.75rem;
 }
 
 /* ==========================================================================
-   CONTENT AREA
+   CONTENT
    ========================================================================== */
 .md-main {
-  background-color: var(--md-default-bg-color);
+  background: var(--md-default-bg-color);
 }
 
 .md-content {
@@ -424,126 +351,122 @@ body {
 }
 
 .md-content__inner {
-  padding: var(--space-xl) var(--space-lg);
+  padding: 2rem 1.5rem;
 }
 
-/* Typography - Compact documentation sizing (80% scale) */
+/* Typography — Inter Tight scale, clear hierarchy */
 .md-typeset {
-  font-size: 0.7rem;
-  line-height: 1.6;
-  color: var(--text-primary);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
 }
 
 .md-typeset h1 {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 600;
-  letter-spacing: -0.02em;
-  margin: 0 0 var(--space-sm);
-  line-height: 1.25;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  margin: 0 0 1rem;
   color: var(--text-primary);
 }
 
 .md-typeset h2 {
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   font-weight: 600;
-  letter-spacing: -0.015em;
-  margin: var(--space-lg) 0 var(--space-xs);
-  padding-bottom: var(--space-xs);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 2.5rem 0 0.75rem;
+  padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--surface-border);
   color: var(--text-primary);
 }
 
 .md-typeset h3 {
-  font-size: 0.9rem;
+  font-size: 1.125rem;
   font-weight: 600;
-  letter-spacing: -0.01em;
-  margin: var(--space-md) 0 var(--space-xs);
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  margin: 2rem 0 0.5rem;
   color: var(--text-primary);
 }
 
 .md-typeset h4 {
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: 600;
-  margin: var(--space-sm) 0 var(--space-xs);
+  letter-spacing: -0.01em;
+  margin: 1.5rem 0 0.375rem;
   color: var(--text-primary);
 }
 
 .md-typeset p {
-  margin: 0 0 var(--space-md);
+  margin: 0 0 1rem;
 }
 
-/* Links */
+/* Links — pink, no underline, underline on hover */
 .md-typeset a {
   color: var(--md-typeset-a-color);
   text-decoration: none;
   border-bottom: 1px solid transparent;
-  transition: color var(--transition-fast),
-              border-color var(--transition-fast);
+  transition: border-color 0.15s;
 }
 
 .md-typeset a:hover {
-  color: var(--md-primary-fg-color--light);
-  border-bottom-color: var(--md-primary-fg-color--light);
+  border-bottom-color: var(--md-typeset-a-color);
 }
 
 /* ==========================================================================
-   CODE BLOCKS
+   CODE — border, no shadow
    ========================================================================== */
 .md-typeset code {
-  font-size: 0.85em;
-  font-family: "JetBrains Mono", "Fira Code", "Consolas", monospace;
-  background-color: var(--md-code-bg-color);
-  color: var(--md-primary-fg-color);
-  padding: 0.1rem 0.3rem;
+  font-size: 0.8em;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  background: var(--md-code-bg-color);
+  color: #C8E84D;
+  padding: 0.15rem 0.4rem;
   border-radius: var(--radius-sm);
   border: 1px solid var(--surface-border);
 }
 
 .md-typeset pre {
   border-radius: var(--radius-lg);
-  border: none;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.08);
-}
-
-[data-md-color-scheme="kariana-dark"] .md-typeset pre {
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--surface-border);
+  box-shadow: none;
+  margin: 1rem 0;
 }
 
 .md-typeset pre > code {
-  font-size: 0.65rem;
+  font-size: 0.5rem;
   line-height: 1.5;
-  padding: var(--space-xs) var(--space-sm);
+  padding: 0.75rem 1rem;
   border: none;
-  background-color: transparent;
+  background: transparent;
+  color: #C8E84D;
 }
 
-/* Code copy button */
+/* Copy button */
 .md-typeset pre button.md-clipboard {
   color: var(--text-muted);
   border-radius: var(--radius-md);
-  transition: color var(--transition-fast),
-              background-color var(--transition-fast);
 }
 
 .md-typeset pre button.md-clipboard:hover {
   color: var(--text-primary);
-  background-color: var(--md-default-bg-color--lighter);
 }
 
 /* Line numbers */
 .md-typeset .highlight .linenos {
   color: var(--text-muted);
-  background-color: transparent;
-  padding-right: var(--space-md);
+  background: transparent;
+  padding-right: 1rem;
   border-right: 1px solid var(--surface-border);
-  margin-right: var(--space-md);
+  margin-right: 1rem;
 }
 
 /* ==========================================================================
-   TABLES
+   TABLES — from design system ds-card style
    ========================================================================== */
 .md-typeset table:not([class]) {
-  font-size: 0.65rem;
+  font-size: 0.8125rem;
   border: 1px solid var(--surface-border);
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -552,16 +475,16 @@ body {
 }
 
 .md-typeset table:not([class]) th {
-  background-color: var(--md-default-bg-color--light);
+  background: var(--md-default-bg-color--light);
   font-weight: 600;
   color: var(--text-primary);
-  padding: var(--space-sm) var(--space-md);
+  padding: 0.5rem 0.75rem;
   text-align: left;
   border-bottom: 1px solid var(--surface-border);
 }
 
 .md-typeset table:not([class]) td {
-  padding: var(--space-sm) var(--space-md);
+  padding: 0.5rem 0.75rem;
   border-bottom: 1px solid var(--surface-border);
   color: var(--text-secondary);
 }
@@ -571,187 +494,117 @@ body {
 }
 
 .md-typeset table:not([class]) tbody tr:hover {
-  background-color: var(--md-default-bg-color--light);
-  border-left: 3px solid var(--md-primary-fg-color);
+  background: var(--md-default-bg-color--light);
 }
 
 /* ==========================================================================
-   ADMONITIONS - Soft full-border design with subtle backgrounds
+   ADMONITIONS — 1px border, subtle bg, no gradients
    ========================================================================== */
 .md-typeset .admonition,
 .md-typeset details {
-  font-size: 0.65rem;
-  border-radius: var(--radius-lg);
+  font-size: 0.875rem;
+  border-radius: var(--radius-xl);
   box-shadow: none;
   overflow: hidden;
   border: none;
+  padding: 0 1rem 1rem;
+  margin: 1.5rem 0;
 }
 
 .md-typeset .admonition-title,
 .md-typeset details > summary {
   font-weight: 600;
-  font-size: 0.65rem;
-  padding: var(--space-sm) var(--space-md);
+  font-size: 0.875rem;
+  padding: 0.75rem 1rem;
+  margin: 0 -1rem 0.75rem;
   border: none;
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.md-typeset .admonition > .admonition-title + *,
-.md-typeset details > summary + * {
-  padding-top: var(--space-sm);
+.md-typeset .admonition-title::before,
+.md-typeset details > summary::before {
+  flex-shrink: 0;
 }
 
-.md-typeset .admonition > :last-child,
-.md-typeset details > :last-child {
-  margin-bottom: 0;
-}
-
-/* Note */
+/* Note — pink */
 .md-typeset .admonition.note,
 .md-typeset details.note {
-  border: 1px solid rgba(255, 121, 198, 0.3);
-  background: linear-gradient(to bottom, var(--kariana-primary-subtle), transparent);
+  border: 1px solid rgba(255,126,220,0.25);
+  background: rgba(255,126,220,0.05);
 }
 
 .md-typeset .note > .admonition-title,
 .md-typeset .note > summary {
-  background-color: rgba(255, 121, 198, 0.15);
+  background: rgba(255,126,220,0.1);
   color: var(--kariana-primary);
 }
 
-[data-md-color-scheme="kariana-dark"] .md-typeset .note > .admonition-title,
-[data-md-color-scheme="kariana-dark"] .md-typeset .note > summary {
-  color: var(--kariana-primary-light);
-}
-
-/* Tip - Light mode: softer teal, Dark mode: vibrant green */
+/* Tip — green */
 .md-typeset .admonition.tip,
 .md-typeset details.tip {
-  border: 1px solid rgba(80, 250, 123, 0.3);
-  background: linear-gradient(to bottom, rgba(80, 250, 123, 0.08), transparent);
+  border: 1px solid rgba(74,222,128,0.25);
+  background: rgba(74,222,128,0.05);
 }
 
 .md-typeset .tip > .admonition-title,
 .md-typeset .tip > summary {
-  background-color: rgba(80, 250, 123, 0.15);
-  color: var(--kariana-success);
+  background: rgba(74,222,128,0.1);
+  color: var(--success);
 }
 
-[data-md-color-scheme="kariana-light"] .md-typeset .admonition.tip,
-[data-md-color-scheme="kariana-light"] .md-typeset details.tip {
-  border-color: rgba(13, 148, 136, 0.3);
-  background: linear-gradient(to bottom, rgba(13, 148, 136, 0.06), transparent);
-}
-
-[data-md-color-scheme="kariana-light"] .md-typeset .tip > .admonition-title,
-[data-md-color-scheme="kariana-light"] .md-typeset .tip > summary {
-  background-color: rgba(13, 148, 136, 0.12);
-  color: #0d9488;
-}
-
-/* Warning - Light mode: warmer amber, Dark mode: orange */
+/* Warning — yellow */
 .md-typeset .admonition.warning,
 .md-typeset details.warning {
-  border: 1px solid rgba(255, 184, 108, 0.3);
-  background: linear-gradient(to bottom, rgba(255, 184, 108, 0.08), transparent);
+  border: 1px solid rgba(251,191,36,0.25);
+  background: rgba(251,191,36,0.05);
 }
 
 .md-typeset .warning > .admonition-title,
 .md-typeset .warning > summary {
-  background-color: rgba(255, 184, 108, 0.15);
-  color: var(--kariana-warning);
+  background: rgba(251,191,36,0.1);
+  color: var(--warning);
 }
 
-[data-md-color-scheme="kariana-light"] .md-typeset .admonition.warning,
-[data-md-color-scheme="kariana-light"] .md-typeset details.warning {
-  border-color: rgba(180, 83, 9, 0.3);
-  background: linear-gradient(to bottom, rgba(180, 83, 9, 0.06), transparent);
-}
-
-[data-md-color-scheme="kariana-light"] .md-typeset .warning > .admonition-title,
-[data-md-color-scheme="kariana-light"] .md-typeset .warning > summary {
-  background-color: rgba(180, 83, 9, 0.12);
-  color: #b45309;
-}
-
-/* Danger */
+/* Danger — red */
 .md-typeset .admonition.danger,
 .md-typeset details.danger {
-  border: 1px solid rgba(255, 85, 85, 0.3);
-  background: linear-gradient(to bottom, rgba(255, 85, 85, 0.08), transparent);
+  border: 1px solid rgba(239,68,68,0.25);
+  background: rgba(239,68,68,0.05);
 }
 
 .md-typeset .danger > .admonition-title,
 .md-typeset details.danger > summary {
-  background-color: rgba(255, 85, 85, 0.15);
-  color: var(--kariana-error);
+  background: rgba(239,68,68,0.1);
+  color: var(--error);
 }
 
-[data-md-color-scheme="kariana-light"] .md-typeset .admonition.danger,
-[data-md-color-scheme="kariana-light"] .md-typeset details.danger {
-  border-color: rgba(220, 38, 38, 0.3);
-  background: linear-gradient(to bottom, rgba(220, 38, 38, 0.06), transparent);
-}
-
-[data-md-color-scheme="kariana-light"] .md-typeset .danger > .admonition-title,
-[data-md-color-scheme="kariana-light"] .md-typeset details.danger > summary {
-  background-color: rgba(220, 38, 38, 0.12);
-  color: #dc2626;
-}
-
-/* Info - Light mode: deeper blue, Dark mode: cyan */
+/* Info — blue (secondary) */
 .md-typeset .admonition.info,
 .md-typeset details.info {
-  border: 1px solid rgba(139, 233, 253, 0.3);
-  background: linear-gradient(to bottom, rgba(139, 233, 253, 0.08), transparent);
+  border: 1px solid rgba(105,201,238,0.25);
+  background: rgba(105,201,238,0.05);
 }
 
 .md-typeset .info > .admonition-title,
 .md-typeset details.info > summary {
-  background-color: rgba(139, 233, 253, 0.15);
-  color: var(--kariana-cyan);
+  background: rgba(105,201,238,0.1);
+  color: var(--kariana-secondary);
 }
 
-[data-md-color-scheme="kariana-light"] .md-typeset .admonition.info,
-[data-md-color-scheme="kariana-light"] .md-typeset details.info {
-  border-color: rgba(3, 105, 161, 0.3);
-  background: linear-gradient(to bottom, rgba(3, 105, 161, 0.06), transparent);
-}
-
-[data-md-color-scheme="kariana-light"] .md-typeset .info > .admonition-title,
-[data-md-color-scheme="kariana-light"] .md-typeset details.info > summary {
-  background-color: rgba(3, 105, 161, 0.12);
-  color: #0369a1;
-}
-
-/* Example - Light mode: purple (scientific), Dark mode: pink */
+/* Example — purple (tertiary) */
 .md-typeset .admonition.example,
 .md-typeset details.example {
-  border: 1px solid rgba(255, 121, 198, 0.3);
-  background: linear-gradient(to bottom, var(--kariana-primary-subtle), transparent);
+  border: 1px solid rgba(182,111,234,0.25);
+  background: rgba(182,111,234,0.05);
 }
 
 .md-typeset .example > .admonition-title,
 .md-typeset details.example > summary {
-  background-color: rgba(255, 121, 198, 0.15);
-  color: var(--kariana-primary);
-}
-
-[data-md-color-scheme="kariana-light"] .md-typeset .admonition.example,
-[data-md-color-scheme="kariana-light"] .md-typeset details.example {
-  border-color: rgba(87, 94, 207, 0.3);
-  background: linear-gradient(to bottom, rgba(87, 94, 207, 0.06), transparent);
-}
-
-[data-md-color-scheme="kariana-light"] .md-typeset .example > .admonition-title,
-[data-md-color-scheme="kariana-light"] .md-typeset details.example > summary {
-  background-color: rgba(87, 94, 207, 0.12);
-  color: var(--kariana-secondary);
-}
-
-[data-md-color-scheme="kariana-dark"] .md-typeset .example > .admonition-title,
-[data-md-color-scheme="kariana-dark"] .md-typeset details.example > summary {
-  color: var(--kariana-primary-light);
+  background: rgba(182,111,234,0.1);
+  color: var(--kariana-tertiary);
 }
 
 /* ==========================================================================
@@ -762,13 +615,10 @@ body {
 }
 
 .md-typeset .tabbed-labels > label {
-  font-size: 0.7rem;
+  font-size: 0.8125rem;
   font-weight: 500;
   color: var(--text-secondary);
-  padding: var(--space-sm) var(--space-md);
-  border-radius: var(--radius-md) var(--radius-md) 0 0;
-  transition: color var(--transition-fast),
-              background-color var(--transition-fast);
+  padding: 0.5rem 0.75rem;
 }
 
 .md-typeset .tabbed-labels > label:hover {
@@ -776,46 +626,53 @@ body {
 }
 
 .md-typeset .tabbed-set > input:checked + label {
-  color: var(--md-primary-fg-color);
-  border-bottom: 2px solid var(--md-primary-fg-color);
+  color: var(--kariana-primary);
+  border-bottom: 2px solid var(--kariana-primary);
+}
+
+.md-typeset .tabbed-set {
+  margin: 1rem 0;
 }
 
 .md-typeset .tabbed-content {
-  padding: var(--space-md) 0;
+  padding: 0.75rem 0;
 }
 
 /* ==========================================================================
-   BUTTONS
+   BUTTONS — from design system: h 2.5rem, 700, uppercase, 0.5rem radius
    ========================================================================== */
 .md-typeset .md-button {
-  font-size: 0.7rem;
-  font-weight: 500;
-  padding: 0.625rem 1.25rem;
-  border-radius: var(--radius-lg);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  height: 2.5rem;
+  padding: 0 1.25rem;
+  border-radius: var(--radius-md);
   border: none;
-  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  transition: opacity 0.15s;
+}
+
+.md-typeset .md-button:hover {
+  opacity: 0.85;
 }
 
 .md-typeset .md-button:not(.md-button--primary) {
-  background-color: var(--surface-color);
+  background: transparent;
   border: 1px solid var(--surface-border);
   color: var(--text-primary);
 }
 
 .md-typeset .md-button:not(.md-button--primary):hover {
-  background-color: var(--md-default-bg-color--lighter);
-  border-color: var(--md-primary-fg-color);
-  color: var(--md-primary-fg-color);
+  border-color: var(--kariana-primary);
+  color: var(--kariana-primary);
+  opacity: 1;
 }
 
 .md-typeset .md-button--primary {
-  background-color: var(--kariana-primary);
-  color: #fff;
-}
-
-.md-typeset .md-button--primary:hover {
-  background-color: var(--kariana-primary-dark);
-  box-shadow: 0 4px 12px rgba(255, 121, 198, 0.3);
+  background: var(--kariana-primary);
+  color: #FFFFFF;
 }
 
 /* ==========================================================================
@@ -825,110 +682,82 @@ body {
   border-top: 1px solid var(--surface-border);
 }
 
-.md-footer-nav {
-  padding: var(--space-lg) 0;
-}
-
 .md-footer-nav__link {
-  padding: var(--space-md);
+  padding: 0.75rem;
   border-radius: var(--radius-lg);
   border: 1px solid var(--surface-border);
-  transition: border-color var(--transition-fast),
-              background-color var(--transition-fast);
 }
 
 .md-footer-nav__link:hover {
-  border-color: var(--md-primary-fg-color);
-  background-color: var(--kariana-primary-subtle);
-}
-
-.md-footer-meta {
-  padding: var(--space-md) 0;
+  border-color: var(--kariana-primary);
 }
 
 .md-social__link {
   color: var(--md-footer-fg-color);
-  transition: color var(--transition-fast);
 }
 
 .md-social__link:hover {
-  color: var(--kariana-primary-light);
+  color: var(--kariana-primary);
 }
 
 /* ==========================================================================
-   HERO SECTION
+   HERO
    ========================================================================== */
 .hero {
   text-align: center;
-  padding: var(--space-2xl) var(--space-lg);
-  margin-bottom: var(--space-xl);
-  background: linear-gradient(180deg,
-    var(--kariana-primary-subtle) 0%,
-    transparent 100%);
+  padding: 3rem 1.5rem;
+  margin-bottom: 2rem;
+  background: var(--md-default-bg-color) !important;
   border-bottom: 1px solid var(--surface-border);
 }
 
 .hero h1 {
-  font-size: 3rem;
-  font-weight: 700;
+  font-size: 2.5rem;
+  font-weight: 600;
   letter-spacing: -0.03em;
-  margin-bottom: var(--space-sm);
-  color: var(--kariana-primary); /* Fallback for accessibility/high-contrast modes */
-  background: linear-gradient(135deg, var(--kariana-primary) 0%, var(--kariana-primary-light) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* High contrast mode fallback */
-@media (forced-colors: active) {
-  .hero h1 {
-    -webkit-text-fill-color: currentColor;
-    background: none;
-  }
+  line-height: 1;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
 }
 
 .hero p {
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: var(--text-secondary);
   max-width: 600px;
-  margin: 0 auto var(--space-lg);
+  margin: 0 auto 1.5rem;
+  line-height: 1.6;
 }
 
 .hero .md-button {
-  margin: 0 var(--space-sm);
+  margin: 0 0.375rem;
 }
 
 /* ==========================================================================
-   FEATURE GRID
+   FEATURE GRID — ds-card style: 1rem radius, 1px border
    ========================================================================== */
 .feature-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--space-md);
-  margin: var(--space-xl) 0;
+  gap: 1.25rem;
+  margin: 2rem 0;
 }
 
 .feature-card {
-  background-color: var(--surface-color);
+  background: var(--surface-color);
   border: 1px solid var(--surface-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-lg);
-  transition: border-color var(--transition-fast),
-              box-shadow var(--transition-fast),
-              transform var(--transition-fast);
+  border-radius: var(--radius-xl);
+  padding: 1.25rem;
+  transition: border-color 0.15s;
 }
 
 .feature-card:hover {
-  border-color: var(--md-primary-fg-color);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
+  border-color: var(--kariana-primary);
 }
 
 .feature-card h3 {
   font-size: 1rem;
   font-weight: 600;
-  margin: 0 0 var(--space-sm);
+  margin: 0 0 0.375rem;
   color: var(--text-primary);
 }
 
@@ -940,192 +769,57 @@ body {
 }
 
 /* ==========================================================================
-   MERMAID DIAGRAMS
+   MERMAID
    ========================================================================== */
 .mermaid {
-  background-color: var(--surface-color);
+  background: var(--surface-color);
   border: 1px solid var(--surface-border);
   border-radius: var(--radius-lg);
-  padding: var(--space-lg);
-  margin: var(--space-md) 0;
+  padding: 1rem;
 }
 
 /* ==========================================================================
-   SCROLLBAR - Native OS styling for consistency
+   AUDIENCE BANNERS (internal/enterprise)
    ========================================================================== */
-/* Removed custom scrollbar styling to use native OS behavior */
-
-/* ==========================================================================
-   RESPONSIVE
-   ========================================================================== */
-@media screen and (max-width: 76.1875em) {
-  .md-sidebar--primary {
-    border-right: none;
-  }
-
-  .md-sidebar--secondary {
-    border-left: none;
-  }
-}
-
-@media screen and (max-width: 59.9375em) {
-  .hero h1 {
-    font-size: 2.25rem;
-  }
-
-  .hero p {
-    font-size: 1rem;
-  }
-
-  .feature-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ==========================================================================
-   ULTRAWIDE DISPLAY SUPPORT (21:9 and wider)
-   Sidebars stick to screen edges, content remains readable
-   ========================================================================== */
-@media screen and (min-width: 100em) {
-  /* Remove max-width constraint on main grid */
-  .md-grid {
-    max-width: none;
-    margin: 0;
-  }
-
-  /* Left sidebar - fixed to left edge */
-  .md-sidebar--primary {
-    position: fixed;
-    left: 0;
-    top: 3rem; /* Below header */
-    bottom: 0;
-    height: auto;
-    width: 15rem;
-    z-index: 2;
-    overflow-y: auto;
-  }
-
-  /* Right sidebar (ToC) - fixed to right edge */
-  .md-sidebar--secondary {
-    position: fixed;
-    right: 0;
-    top: 3rem; /* Below header */
-    bottom: 0;
-    height: auto;
-    width: 15rem;
-    z-index: 2;
-    overflow-y: auto;
-  }
-
-  /* Sidebar inner content - extra padding so footer doesn't hide last items */
-  .md-sidebar__scrollwrap {
-    padding-bottom: 6rem;
-  }
-
-  /* Main content area - centered with readable width */
-  .md-main__inner {
-    margin-left: 16rem;
-    margin-right: 16rem;
-    max-width: none;
-  }
-
-  .md-content {
-    max-width: 60rem;
-    margin: 0 auto;
-  }
-
-  /* Header spans full width */
-  .md-header__inner {
-    max-width: none;
-    padding: 0 1rem;
-  }
-
-  /* Footer - full width, above sidebars */
-  .md-footer {
-    position: relative;
-    z-index: 3;
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  .md-footer__inner {
-    max-width: none;
-    padding-left: 16rem;
-    padding-right: 16rem;
-  }
-
-  .md-footer-nav {
-    max-width: 60rem;
-    margin: 0 auto;
-  }
-
-  .md-footer-meta {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-}
-
-/* Even wider screens (4K and beyond) */
-@media screen and (min-width: 140em) {
-  .md-sidebar--primary {
-    width: 18rem;
-  }
-
-  .md-sidebar--secondary {
-    width: 18rem;
-  }
-
-  .md-main__inner {
-    margin-left: 19rem;
-    margin-right: 19rem;
-  }
-
-  .md-content {
-    max-width: 70rem;
-  }
-
-  /* Footer padding for 4K */
-  .md-footer__inner {
-    padding-left: 19rem;
-    padding-right: 19rem;
-  }
-
-  .md-footer-nav {
-    max-width: 70rem;
-  }
-}
-
-/* ==========================================================================
-   PRINT STYLES
-   ========================================================================== */
-@media print {
-  .md-sidebar,
-  .md-header,
-  .md-footer {
-    display: none;
-  }
-
-  .md-content {
-    max-width: 100%;
-  }
-}
-
-/* ==========================================================================
-   Audience Banners (internal / enterprise / public)
-   Driven by extra.audience in mkdocs*.yml via docs/overrides/main.html
-   ========================================================================== */
+/* Audience banner — pill-style bar */
 .kariana-audience-banner {
   text-align: center;
-  padding: 0.3rem 1rem;
-  font-size: 0.75rem;
-  color: #fff;
+  padding: 0.4rem 1rem;
+  font-size: 0.6875rem;
   font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid var(--d-border);
 }
 
 .kariana-audience-banner--internal {
-  background: linear-gradient(90deg, var(--kariana-error) 0%, var(--kariana-primary) 100%);
+  background: var(--d-surface);
+  color: var(--d-text-muted);
 }
 
 .kariana-audience-banner--enterprise {
-  background: linear-gradient(90deg, var(--kariana-secondary) 0%, var(--kariana-secondary-light) 100%);
+  background: var(--d-surface);
+  color: var(--kariana-secondary);
 }
+
+/* ==========================================================================
+   PILL — reusable component from design system
+   Use in markdown: <span class="pill">Label</span>
+   ========================================================================== */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid var(--surface-border);
+  color: var(--text-secondary);
+  width: fit-content;
+}
+
+.pill--pink { color: var(--kariana-primary); border-color: rgba(255,126,220,0.3); }
+.pill--blue { color: var(--kariana-secondary); border-color: rgba(105,201,238,0.3); }
+.pill--purple { color: var(--kariana-tertiary); border-color: rgba(182,111,234,0.3); }
