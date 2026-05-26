@@ -2,222 +2,246 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/changelog/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/mac-qa-report-0.8.47/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/team-onboarding-v09/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/enterprise/changelog/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/help/faq/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/help/troubleshooting/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/internal/auth-token-system/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/internal/ci-cd-infrastructure/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/internal/epic-mcp-comparison/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/internal/kariana-theme-architecture/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/internal/reflection-toolset-port-evaluation/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/internal/reflection-toolset-port-plan/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/internal/stripe-setup/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/internal/swap-manifest-v1/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/internal/toolset-registry-interop-design/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/internal/kariana-ui-architecture/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/internal/kariana-ui-architecture/01-widget-tree/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/internal/kariana-ui-architecture/02-widget-catalog/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/internal/kariana-ui-architecture/03-layout-spacing/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/internal/kariana-ui-architecture/04-color-theme-system/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/internal/kariana-ui-architecture/05-color-inventory/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/internal/kariana-ui-architecture/06-widget-color-audit/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/internal/kariana-ui-architecture/07-styleset-registry/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/internal/kariana-ui-architecture/08-icon-system/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/internal/kariana-ui-architecture/09-state-management/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/internal/kariana-ui-architecture/10-widget-communication/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/internal/kariana-ui-architecture/11-layout-magic-numbers/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/internal/kariana-ui-architecture/12-problems-issues/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/internal/kariana-ui-architecture/13-refactoring-recommendations/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/internal/kariana-ui-architecture/14-how-to-reference/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/plans/2026-02-25-python-protection-compilation/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/plans/2026-03-09-user-flow-design/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/plans/2026-03-19-assistant-ui-redesign/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/plans/2026-03-21-ui-architecture-refactor/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/plans/2026-03-22-figma-alignment/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/plans/2026-04-30-plugin-auto-update/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
+    </url>
+    <url>
+         <loc>https://ingipsa.github.io/KARIANA-docs/plans/2026-05-20-claude-code-structural-imitation/</loc>
+         <lastmod>2026-05-26</lastmod>
+    </url>
+    <url>
+         <loc>https://ingipsa.github.io/KARIANA-docs/plans/2026-05-20-cpp-bridge-split-plan/</loc>
+         <lastmod>2026-05-26</lastmod>
+    </url>
+    <url>
+         <loc>https://ingipsa.github.io/KARIANA-docs/plans/2026-05-21-per-turn-chat-message/</loc>
+         <lastmod>2026-05-26</lastmod>
+    </url>
+    <url>
+         <loc>https://ingipsa.github.io/KARIANA-docs/plans/2026-05-21-per-turn-split-contract/</loc>
+         <lastmod>2026-05-26</lastmod>
+    </url>
+    <url>
+         <loc>https://ingipsa.github.io/KARIANA-docs/plans/2026-05-25-support-bundle-design/</loc>
+         <lastmod>2026-05-26</lastmod>
+    </url>
+    <url>
+         <loc>https://ingipsa.github.io/KARIANA-docs/plans/2026-05-25-support-bundle/</loc>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/plans/ui-refactor/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/plans/ui-refactor/phase-1-cleanup/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/plans/ui-refactor/phase-2-theme-manager/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/plans/ui-refactor/phase-3-semantic-tokens/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/plans/ui-refactor/phase-4-styleset-split/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/plans/ui-refactor/phase-5-layout-constants/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/plans/ui-refactor/phase-6-panel-decomposition/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/quick-start/installation/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/quick-start/understanding-mcp/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/quick-start/what-is-kariana/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/tutorials/create-materials/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/tutorials/lighting-setup/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/tutorials/organize-level/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/tutorials/sequencer-camera-pipeline/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/tutorials/spawn-actor/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/tutorials/take-screenshots/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/using-kariana/first-commands/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://ingipsa.github.io/KARIANA-docs/using-kariana/tools-overview/</loc>
-         <lastmod>2026-05-14</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
 </urlset>
